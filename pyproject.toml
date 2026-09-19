@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-residue"
+version = "0.1.0"
+description = "Inventory the state AI coding agents leave on disk, and flag the credentials inside it."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Wynston Wong Jun De" }]
+keywords = ["security", "dfir", "privacy", "ai-agents", "audit"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://github.com/wyn-cmd/agent-residue"
+
+[project.scripts]
+agent-residue = "agent_residue.cli:main"
+
+[tool.setuptools]
+packages = ["agent_residue"]
