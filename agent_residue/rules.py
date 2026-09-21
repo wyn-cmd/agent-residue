@@ -118,8 +118,10 @@ CONTENT_KINDS = frozenset(("transcripts", "credentials", "settings", "caches"))
 
 def agents():
     """Agent names in the order rules are defined, without duplicates."""
-    seen = []
+    seen = set()
+    result = []
     for rule in RULES:
         if rule.agent not in seen:
-            seen.append(rule.agent)
-    return seen
+            seen.add(rule.agent)
+            result.append(rule.agent)
+    return result
