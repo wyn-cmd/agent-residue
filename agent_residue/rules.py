@@ -1,10 +1,7 @@
-"""Known on-disk locations that AI coding agents write to.
-
-Each rule pairs a path pattern with the kind of data it holds and how
-sensitive that data is. The paths come from the agents themselves and move
-between releases, so every rule is a best-effort hint that a scan confirms,
-not a guarantee that the location still exists.
-"""
+# Known on-disk locations that AI coding agents write to.
+# Each rule pairs a path pattern with the kind of data it holds and how
+# sensitive that data is. Paths come from agents and move between releases,
+# so rules are best-effort hints, not guarantees that the location exists.
 
 CRITICAL = "critical"
 HIGH = "high"
@@ -14,9 +11,8 @@ LOW = "low"
 SEVERITY_ORDER = {CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3}
 
 
+# One path pattern to look for, and what it means when it is present.
 class Rule:
-    """One path pattern to look for, and what it means when it is present."""
-
     __slots__ = ("agent", "pattern", "kind", "sensitivity", "note")
 
     def __init__(self, agent, pattern, kind, sensitivity, note):
@@ -116,8 +112,8 @@ RULES = (
 CONTENT_KINDS = frozenset(("transcripts", "credentials", "settings", "caches"))
 
 
+# Agent names in the order rules are defined, without duplicates.
 def agents():
-    """Agent names in the order rules are defined, without duplicates."""
     seen = set()
     result = []
     for rule in RULES:
