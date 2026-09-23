@@ -1,4 +1,4 @@
-"""Tests for the scan, the masking, and the exit codes."""
+# Tests for scan, masking, and exit codes
 
 import json
 import os
@@ -15,8 +15,8 @@ ANTHROPIC_KEY = "sk-ant-api03-AAAABBBBCCCCDDDDEEEEFFFF1234"
 OPENAI_KEY = "sk-proj-ZZZZYYYYXXXXWWWWVVVVUUUUTTTT0000"
 
 
+# Create a small fake home tree with agent residue
 def build_fake_home(base):
-    """A small home tree with plausible agent residue."""
     home = Path(base)
     projects = home / ".claude" / "projects" / "demo"
     projects.mkdir(parents=True)
