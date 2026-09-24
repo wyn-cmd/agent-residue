@@ -1,3 +1,5 @@
+# entry point for the agent-residue package
+
 import sys
 
 from .cli import main
