@@ -167,6 +167,7 @@ def find_secrets(path, max_bytes=DEFAULT_MAX_FILE_BYTES):
     except OSError:
         return []
     text = data.decode("utf-8", errors="replace")
+    # Quick substring check skips files lacking any known token prefix to save CPU time
     if not any(marker in text for marker in ("sk-", "AIza", "AKIA", "gh", "xox", "Bearer", "bearer")):
         return []
     hits = []
