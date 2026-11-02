@@ -118,6 +118,17 @@ class ScanTests(unittest.TestCase):
         for rule in RULES:
             self.assertTrue(rule.pattern.startswith("~"), rule.pattern)
 
+    def test_walk_limit_marks_the_finding_truncated(self):
+        projects = self.home / ".claude" / "projects" / "demo"
+        for index in range(3):
+            (projects / ("extra%d.jsonl" % index)).write_text("{}\n", encoding="utf-8")
+        audit = scan(root=str(self.home), max_files=1)
+        claude = [f for f in audit.findings if f.agent == "Claude Code"
+                  and f.kind == "transcripts" and f.path.endswith("projects")]
+        self.assertTrue(claude)
+        self.assertEqual(claude[0].files, 1)
+        self.assertTrue(claude[0].truncated)
+
 
 class CliTests(unittest.TestCase):
     def setUp(self):

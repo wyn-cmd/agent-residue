@@ -198,7 +198,8 @@ def scan_rule(rule, root, read_contents=True, max_files=DEFAULT_MAX_FILES,
         return None
     finding = Finding(rule, path)
     seen = 0
-    for entry in iter_files(path, max_files=max_files):
+    # ask for one entry past the limit so an oversize tree can be reported as truncated
+    for entry in iter_files(path, max_files=max_files + 1):
         seen += 1
         if seen > max_files:
             finding.truncated = True
