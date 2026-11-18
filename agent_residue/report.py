@@ -98,6 +98,9 @@ def render_text(audit):
 
 
 def render_markdown(audit):
+    # Check if audit data is present
+    if audit is None:
+        raise ValueError("audit cannot be None")
     out = []
     out.append("# Agent residue audit")
     out.append("")
